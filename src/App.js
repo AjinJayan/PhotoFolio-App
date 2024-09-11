@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import NavBar from "./components/Navbar";
+import AlbumsList from "./components/AlbumsList";
+import { useState } from "react";
 
 function App() {
+  const [selectedAlbum, setSelectedAlbum] = useState(null)
+
+  async function albumClickHandler(album) {
+    setSelectedAlbum(album)
+  }
+
+  function navIconHandler() {
+    setSelectedAlbum(null)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar navIconHandler={navIconHandler} />
+      <AlbumsList selectedAlbum={selectedAlbum} setSelectedAlbum={setSelectedAlbum} albumClickHandler={albumClickHandler} />
+    </>
   );
 }
 
